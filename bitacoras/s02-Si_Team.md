@@ -1,31 +1,28 @@
-# Bitacora individual - Semana [XX]
+# Bitácora - Semana 2
 
-> Copia este archivo y renombralo como `s[XX]-[tu-nombre].md`.
-> Completa todas las secciones con tus propias palabras. Esta bitacora es
-> individual, aunque el codigo pueda haberse construido en equipo.
+
 
 ## 1. Datos de la actividad
 
-- **Estudiante:** [Nombre completo]
-- **Equipo:** [Numero o nombre del equipo]
-- **Semana:** [Numero de semana]
-- **Fecha del laboratorio:** [AAAA-MM-DD]
-- **Fecha del taller:** [AAAA-MM-DD]
-- **Tema principal:** [Tema o estructura trabajada]
-- **Pregunta de la semana:** [Pregunta orientadora del documento de actividad]
+- **Estudiantes:** Andrés Parada, Maddox Valbuena, Julián Cárdenas
+- **Equipo:** Si Team
+- **Semana:** 2
+- **Fecha del laboratorio:** 2026-09-10
+- **Fecha del taller:** 2026-09-10
+- **Tema principal:** Almacenamiento
+- **Pregunta de la semana:**  Los datos ya llegan limpios. ¿Dónde viven ahora y qué podemos preguntarles?
 
 ## 2. Prediccion antes de ejecutar
 
 Antes de abrir o ejecutar el programa, responde:
 
 1. **Que creo que va a ocurrir?**
-   [Escribe tu prediccion concreta. Incluye el resultado que esperas y por que.]
-
+   El programa limitará su almacenamiento a las primeras 10 lecturas válidas y descartará el resto en silencio. Esto ocurre porque la clase RepositorioLecturas inicializa su arreglo interno (lecturas) con una CAPACIDAD_INICIAL de 10. Cuando la variable "cantidad" alcanza este límite, el método agregar() simplemente retorna false en lugar de crecer para almacenar los 211 datos del archivo lecturas_ampliadas.csv.
 2. **Que parte del programa o del algoritmo puede fallar?**
-   [Indica una linea, bloque, dato o supuesto que quieras comprobar.]
+  El bloque condicional dentro del método agregar() en la línea 35 en la clase RepositorioLecturas. Al evaluar if (cantidad == lecturas.length), frena la adición y la actualización de la variable cantidad, volviendo inútil el repositorio a partir de la décima lectura.
 
 3. **Como comprobare mi prediccion?**
-   [Describe una prueba pequena: entrada, paso manual o resultado esperado.]
+   Al momento de ejecutar el programa revisaría la impresión en consola de "Lecturas almacenadas". Si mi predicción es correcta, solo registraría los primeros 10, y todos los demás los ignoraría en lugar de almacenarlos, por lo que va a ocurrir una perdida de información intencional de todo el documento, sin indicar ningún tipo de error.
 
 ## 3. Evidencia del laboratorio
 
