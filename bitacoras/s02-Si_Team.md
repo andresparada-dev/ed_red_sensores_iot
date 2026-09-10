@@ -28,20 +28,17 @@ Antes de abrir o ejecutar el programa, responde:
 
 ### Resultado observado
 
-[Describe que ocurrio realmente al ejecutar o probar la solucion. No escribas
-solamente "funciono" o "no funciono". Incluye los datos de entrada y el
-resultado relevante.]
+Al intentar ejecutar la clase IngestaSensores.java el programa no imprimió el reporte de lecturas ni interactuó con el repositorio como se esperaba en la predicción. En su lugar ocurrió un error de ejecución porque según la impresión de consola se lanzó una excepción en consola: java.io.FileNotFoundException: lecturas_ampliadas.csv (El sistema no puede encontrar el archivo especificado). El sistema no puede encontrar el archivo lectuas_ampliadas.csv donde están los registros que vamos a almacenar, este error ocurre en la línea 52 al instanciar FileReader(ARCHIVO).
 
 ### Diferencia entre la prediccion y el resultado
 
-[Explica que coincidencias o diferencias encontraste y que las puede explicar.]
+Mi predicción analizaba la estructura de almacenamiento de los datos en memoria desde el arreglo lecturas. Esperaba que los datos fueran silenciosamente descartados luego del 10mo registro, sin embargo el resultado fue un fallo en la instancia inicial del sistema de archivos, no pudiendo el sistema llegar al repositorio si quiera para imprimir los primeros 10 registros.
 
 ### Error o comportamiento inesperado
 
-- **Que ocurrio?** [Describe el problema sin ocultarlo.]
-- **Por que ocurrio?** [Explica la causa con la evidencia disponible.]
-- **Como lo corregimos o que falta corregir?** [Describe la solucion o el siguiente paso.]
-
+- **Que ocurrio?** Un crash total por archivo no encontrado (FileNotFoundException), impidiendo cualquier ingreso de datos al sistema.
+- **Por que ocurrió?** La constante ARCHIVO en la clase IngestaSensores busca el documento lecturas_ampliadas.csv mediante una ruta relativa. El error salta porque el archivo no se encuentra ubicado en el directorio raíz del proyecto de IntelliJ, o bien el nombre tiene alguna diferencia del que buscamos.
+- **Como lo corregimos o que falta corregir?** Debo mover el archivo lecturas_ampliadas.csv a la carpeta raíz del proyecto (al mismo nivel que la carpeta src), o ajustar la ruta en el código. Una vez que el archivo sea detectado, podré volver a ejecutar el programa para observar finalmente el problema del límite de 10 posiciones en el arreglo.
 ## 4. Explicacion en lenguaje llano
 
 Explica el concepto principal como se lo explicarias a una persona de doce
