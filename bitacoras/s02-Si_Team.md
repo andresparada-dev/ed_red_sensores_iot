@@ -39,26 +39,23 @@ Mi predicción analizaba la estructura de almacenamiento de los datos en memoria
 - **Que ocurrio?** Un crash total por archivo no encontrado (FileNotFoundException), impidiendo cualquier ingreso de datos al sistema.
 - **Por que ocurrió?** La constante ARCHIVO en la clase IngestaSensores busca el documento lecturas_ampliadas.csv mediante una ruta relativa. El error salta porque el archivo no se encuentra ubicado en el directorio raíz del proyecto de IntelliJ, o bien el nombre tiene alguna diferencia del que buscamos.
 - **Como lo corregimos o que falta corregir?** Debo mover el archivo lecturas_ampliadas.csv a la carpeta raíz del proyecto (al mismo nivel que la carpeta src), o ajustar la ruta en el código. Una vez que el archivo sea detectado, podré volver a ejecutar el programa para observar finalmente el problema del límite de 10 posiciones en el arreglo.
+
 ## 4. Explicacion en lenguaje llano
 
-Explica el concepto principal como se lo explicarias a una persona de doce
-anos. Usa entre tres y cinco lineas y evita palabras tecnicas que no expliques.
-
-> [Escribe aqui tu explicacion.]
+Un Tipo Abstracto de Dato (TAD) es como los controles básicos de cualquier videojuego. Tú sabes que presionar un botón realiza una acción y permite interactuar con el juego en sí. Para jugar, no necesitas entender el proceso interno de como funciona el código del juego o como interactúa este desde el hardware; solo te importa saber qué botón realiza qué acción.
 
 ### Ejemplo o analogia
 
-[Relaciona el concepto con una situacion cotidiana. Explica que representa
-cada parte de la analogia y donde deja de ser exacta.]
+El "contrato" es el control o el teclado, te expone las acciones que puedes usar sea saltar, correr, etc. La "implementación" es el motor del juego que procesa el código en segundo plano cada vez que presionas un botón. La relación es útil porque si los desarrolladores actualizan el motor gráfico del juego, tú puedes seguir jugando igual si los botones no cambian. Sin embargo, la analogía deja de ser exacta porque en un videojuego tú eres un usuario pasivo que solo toca los botones, mientras que en programación nosotros construimos tanto el control como el motor interno.
 
 ## 5. El vacio que encontre
 
 Al intentar explicar el tema, identifica el punto que aun no comprendes bien.
 
-- **Mi duda concreta es:** [Pregunta especifica, no "no entiendo nada".]
-- **Lo que ya puedo explicar es:** [Parte que si comprendes.]
-- **Para resolver la duda consulte:** [Clase, lectura, experimento, companero u otra fuente.]
-- **Ahora lo entiendo asi:** [Respuesta escrita con tus palabras.]
+- **Mi duda concreta es:** ¿Si se llega a cambiar el contrato inicial, ya eso implica el cambio del objetivo del proyecto?
+- **Lo que ya puedo explicar es:** Como funciona un TAD al separar su "contrato" de su "implementación". Puedo argumentar cómo son dos conceptos independientes, donde el contrato define qué operaciones va a realizar el sistema, mientras que la implementación oculta el cómo se resuelven internamente.
+- **Para resolver la duda consulte:** El artículo de Wikipedia sobre "Tipo de dato abstracto", el material académico de Programación II (Google Sites) sobre la unidad de TADs, enfocándome en los conceptos de interfaz, especificación y ocultamiento de información, también consultando a Gemini con respecto a las dos fuentes anteriores luego de leerlas.
+- **Ahora lo entiendo asi:** Entiendo que el objetivo general del proyecto no cambia, porque la plataforma sigue teniendo el mismo propósito de medir la calidad del aire. Sin embargo, lo que sí se altera por completo es la arquitectura del software. Las lecturas me dejaron claro que el contrato es el único puente de comunicación entre las clases; si yo modifico esa interfaz pública, rompo esa promesa de comunicación. Esto significa que cualquier otra parte del sistema que dependiera de esa estructura dejará de funcionar y tendrá que ser reescrita desde cero.
 
 ## 6. Trazado de la solucion
 
